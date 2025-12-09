@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "8f14de60-a768-46ff-a7cf-e5d00f1d89a7",
+		"name": "iskola_konyvtar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48360053",
+		"_collection_link": "https://novesz-8829019.postman.co/workspace/Iskola~d34a16e0-4c27-4346-aad5-d9f47d14e902/collection/48360053-8f14de60-a768-46ff-a7cf-e5d00f1d89a7?action=share&source=collection_link&creator=48360053"
+	},
+	"item": [
+		{
+			"name": "osszesKonyv",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "elerhetoKonyvek",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "ujKonyv",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

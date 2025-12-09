@@ -85,6 +85,21 @@ app.post("/api/ujkonyv", (req, res) => {
   });
 });
 
+app.delete("/api/konyv/:id", (req, res) => {
+    const konyvID = req.params.id;
+    const deleteKolcsonzes = "DELETE FROM kolcsonzesek WHERE konyvID = ?";
+    db.query(deleteKolcsonzes, [konyvID], (err) => {
+        if (err) return res.status(500).json({ message: "Hiba a kölcsönzések törlésekor" });
+        const deleteKonyv = "DELETE FROM konyvek WHERE konyvID = ?";
+        db.query(deleteKonyv, [konyvID], (err2) => {
+            if (err2) return res.status(500).json({ message: "Hiba a könyv törlésekor" });
+
+            res.json({ message: "Könyv és kölcsönzések törölve" });
+        });
+    });
+});
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

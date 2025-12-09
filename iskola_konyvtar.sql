@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `diakok`;
 CREATE TABLE `diakok` (
   `diakID` int(11) NOT NULL AUTO_INCREMENT,
   `nev` varchar(100) NOT NULL,
-  `osztaly` varchar(10) NOT NULL,
+  `osztaly` varchar(45) NOT NULL,
   PRIMARY KEY (`diakID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -54,10 +54,10 @@ CREATE TABLE `kolcsonzesek` (
   `kiadas_datum` date NOT NULL,
   `visszahozva` date DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `diakID` (`diakID`),
-  KEY `konyvID` (`konyvID`),
-  CONSTRAINT `kolcsonzesek_ibfk_1` FOREIGN KEY (`diakID`) REFERENCES `diakok` (`diakID`),
-  CONSTRAINT `kolcsonzesek_ibfk_2` FOREIGN KEY (`konyvID`) REFERENCES `konyvek` (`konyvID`)
+  KEY `fk_kolcsonzes_diak` (`diakID`),
+  KEY `fk_kolcsonzes_konyv` (`konyvID`),
+  CONSTRAINT `fk_kolcsonzes_diak` FOREIGN KEY (`diakID`) REFERENCES `diakok` (`diakID`),
+  CONSTRAINT `fk_kolcsonzes_konyv` FOREIGN KEY (`konyvID`) REFERENCES `konyvek` (`konyvID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,11 +81,11 @@ DROP TABLE IF EXISTS `konyvek`;
 CREATE TABLE `konyvek` (
   `konyvID` int(11) NOT NULL AUTO_INCREMENT,
   `cim` varchar(100) NOT NULL,
-  `szerzoID` int(11) DEFAULT NULL,
+  `szerzoID` int(11) NOT NULL,
   PRIMARY KEY (`konyvID`),
-  KEY `szerzoID` (`szerzoID`),
-  CONSTRAINT `konyvek_ibfk_1` FOREIGN KEY (`szerzoID`) REFERENCES `szerzok` (`szerzoID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  KEY `fk_konyv_szerzo` (`szerzoID`),
+  CONSTRAINT `fk_konyv_szerzo` FOREIGN KEY (`szerzoID`) REFERENCES `szerzok` (`szerzoID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +94,7 @@ CREATE TABLE `konyvek` (
 
 LOCK TABLES `konyvek` WRITE;
 /*!40000 ALTER TABLE `konyvek` DISABLE KEYS */;
-INSERT INTO `konyvek` VALUES (1,'Ragyogás',1),(2,'Harry Potter és a Bölcsek Köve',2),(3,'1984',3),(4,'Medve mesék',4);
+INSERT INTO `konyvek` VALUES (1,'ragyogás',1),(2,'asdtfgh',2),(3,'oiuztre',2),(4,'zjtsaf',3),(5,'Ragyogás',1);
 /*!40000 ALTER TABLE `konyvek` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -107,9 +107,10 @@ DROP TABLE IF EXISTS `szerzok`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `szerzok` (
   `szerzoID` int(11) NOT NULL AUTO_INCREMENT,
-  `nev` varchar(100) NOT NULL,
-  PRIMARY KEY (`szerzoID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
+  `szerzo` varchar(100) NOT NULL,
+  PRIMARY KEY (`szerzoID`),
+  UNIQUE KEY `uniq_szerzo` (`szerzo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +119,7 @@ CREATE TABLE `szerzok` (
 
 LOCK TABLES `szerzok` WRITE;
 /*!40000 ALTER TABLE `szerzok` DISABLE KEYS */;
-INSERT INTO `szerzok` VALUES (1,'Stephen King'),(2,'J. K. Rowling'),(3,'George Orwell'),(4,'Mackó Béla');
+INSERT INTO `szerzok` VALUES (3,'asdasd'),(2,'Mackó'),(1,'Stephen King');
 /*!40000 ALTER TABLE `szerzok` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -131,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-09 12:51:41
+-- Dump completed on 2025-12-09 13:58:05
