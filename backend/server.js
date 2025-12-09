@@ -31,7 +31,7 @@ app.get("/api/konyvek", (req, res) => {
 
 app.get("/api/elerhetokonyvek", (req, res) => {
   const sqlSelect =
-    "SELECT k.konyvID, k.cim FROM konyvek k LEFT JOIN kolcsonzesek kol ON k.konyvID = kol.konyvID AND kol.visszahozva IS NULL WHERE kol.id IS NULL";
+    "SELECT k.konyvID, k.cim, sz.szerzo FROM konyvek k LEFT JOIN kolcsonzesek kol ON (k.konyvID = kol.konyvID AND kol.visszahozva IS NULL) LEFT JOIN szerzok sz ON k.szerzoID = sz.szerzoID WHERE kol.id IS NULL";
   db.query(sqlSelect, (err, result) => {
     if (err) {
       console.log(err);
