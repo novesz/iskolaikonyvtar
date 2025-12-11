@@ -1,0 +1,16 @@
+.status {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.status-elerheto {
+  color: #6ddf6d; /* zöldes */
+}
+
+.status-foglalt {
+  color: #ff6961; /* pirosas */
+}
+
+.visszabtn{
+  padding: 5px;
+}

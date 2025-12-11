@@ -15,6 +15,9 @@ export default function NavBar() {
         <li>
           <Link to="/torles">Könyv törlése</Link>
         </li>
+        <li>
+          <Link to="/ujkonyv">Új könyv hozzáadása</Link>
+        </li>
       </ul>
     </nav>
   );

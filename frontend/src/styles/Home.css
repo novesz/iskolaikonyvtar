@@ -1,0 +1,26 @@
+.kartya-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.kartya {
+    width: 200px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #555050;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.kartya:hover {
+    transform: scale(1.05);
+}
+
+.kartya-szoveg {
+    color: rgb(224, 207, 195);
+    padding: 10px;
+}

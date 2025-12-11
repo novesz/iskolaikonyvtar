@@ -4,6 +4,7 @@ import Nav from './commponents/Nav.jsx'
 import Home from './pages/Home.jsx'
 import Kolcsonzes from './pages/Kolcsonzes.jsx'
 import KonyvTorles from './pages/KonyvTorles.jsx'
+import UjKonyv from './pages/UjKonyv.jsx'
 import './App.css'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/kolcsonzes" element={<Kolcsonzes />} />
         <Route path="/torles" element={<KonyvTorles />} />
+        <Route path='/ujkonyv'element={<UjKonyv />}/>
       </Routes>
     </Router>
     </>

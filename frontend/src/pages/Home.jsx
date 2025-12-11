@@ -1,21 +1,16 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Home.css";
-export default function Home() {
 
+export default function Home() {
   const [konyvek, setKonyvek] = useState([]);
 
-  useEffect(() => { (
-    async (e) => {
-    const res = await fetch("http://localhost:3001/api/elerhetokonyvek");
-    const data = await res.json();
-    setKonyvek(data);
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("http://localhost:3001/api/elerhetokonyvek");
+      const data = await res.json();
+      setKonyvek(data);
     })();
-  }, []); 
-    
-
-
-
-
+  }, []);
 
   return (
     <>
@@ -27,19 +22,16 @@ export default function Home() {
         </p>
       </main>
 
-      <section className="kartya"> 
+      <section className="kartya-container">
         {konyvek.map((konyv) => (
-          <div className="card"  key={konyv.konyvID}>
-          <div className="card-body">
-            <h5 className="card-title">{konyv.cim}</h5>
-            <h6 className="card-subtitle mb-2 text-body-secondary">Szerzo: {konyv.szerzo}</h6>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+          <div className="kartya" key={konyv.konyvID}>
+            <div className="kartya-szoveg">
+              <h2 className="kartya-cim">{konyv.cim}</h2>
+              <h5>Szerző: {konyv.szerzo}</h5>
+              <p>Rövid leírás a könyvről</p>
+            </div>
           </div>
-        </div>
-        
         ))}
-
-        
       </section>
     </>
   );
